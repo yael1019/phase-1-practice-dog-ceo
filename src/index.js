@@ -20,7 +20,10 @@ const select = document.getElementById('breed-dropdown');
 //     const dogBreedObject = await response2.json();
 //     const dogBreed = dogBreedObject.message;
 //     // console.log(dogBreed)
-//     for (breed in dogBreed) {
+//     // //! for (breed in dogBreed) {
+//         Object.keys(dogBreed).forEach(breed => {
+//         // console.log(Object.keys(dogBreed))
+//         // console.log(breed)
 //         // console.log(breed[0])
 //         const li = document.createElement('li');
 //         ul.append(li);
@@ -30,13 +33,16 @@ const select = document.getElementById('breed-dropdown');
 //         })
 //         select.addEventListener('change', (event) => {
 //             li.remove();
+//             console.log(breed[0])
 //             if(breed[0] === event.target.value) {
 //                 ul.append(li);
-//                 li.textContent = breed;
+//                 // li.textContent = breed;
 //             }
 //         })
+//     })
 //     }
-// }
+    
+// //}
 
 // dogCeo();
 
@@ -67,8 +73,12 @@ fetch('https://dog.ceo/api/breeds/list/all')
             const li = document.createElement('li');
             ul.append(li);
             li.textContent = eachBreed;
+            // lets toggle the click colors
+            let clicked = false;
             li.addEventListener('click', () => {
-                li.style.color = 'blue';
+                clicked = !clicked;
+                if(clicked) li.style.color = 'blue';
+                else li.style.color = 'black';
             })
             select.addEventListener('change', (event) => {
                 li.remove();
